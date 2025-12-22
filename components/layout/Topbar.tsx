@@ -6,7 +6,7 @@ import { NAV_LINKS, type NavLink } from "@/constant/navlinks"
 
 export default function Topbar() {
   return (
-    <header className="sticky w-full">
+    <header className="fixed w-full bg-[#e5e5e5] z-100">
       <div className="top-screen flex items-center justify-between">
         {/* left Corner */}
         <div>

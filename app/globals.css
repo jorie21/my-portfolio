@@ -58,6 +58,18 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --animate-shine: shine var(--duration) infinite linear;
+  @keyframes shine {
+  0% {
+    background-position: 0% 0%;
+    }
+  50% {
+    background-position: 100% 100%;
+    }
+  to {
+    background-position: 0% 0%;
+    }
+  }
 }
 
 :root {
@@ -145,13 +157,20 @@
       mx-auto 
       px-4 sm:px-6 lg:px-8
       py-3
-      outline 
-      outline-1 
-      outline-blue-500;
+      outline outline-blue-500
   }
 }
 @layer utilities {
   .text-soft-black {
     color: #3a3a3a;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
