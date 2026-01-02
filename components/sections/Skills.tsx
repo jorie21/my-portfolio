@@ -13,26 +13,37 @@ export default function Skills() {
       </div>
 
       {/* TECH GRID */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+      {/* TECH GRID */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
         {techStack.map((tech) => (
+          <div
+            key={tech.name}
+            className="group flex flex-col items-center justify-center rounded-2xl
+      bg-[#3a3a3a] backdrop-blur
+      border border-white/10
+      h-[190px] w-[190px]
+      transition-all duration-300
+      hover:border-white/30 hover:-translate-y-2
+      hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+          >
             <TiltedCard
-              key={tech.name}
               imageSrc={tech.icon}
               altText={tech.name}
-              containerHeight="200px"
-              containerWidth="200px"
-              imageHeight="100px"
-              imageWidth="100px"
-              rotateAmplitude={12}
-              scaleOnHover={1.2}
+              containerHeight="100px"
+              containerWidth="100px"
+              imageHeight="50px"
+              imageWidth="50px"
+              rotateAmplitude={8}
+              scaleOnHover={1.1}
               showMobileWarning={false}
-              showTooltip={true}
-              displayOverlayContent={true}
-              overlayContent={
-                <p className="mt-3 text-sm text-neutral-300">{tech.name}</p>
-              }
+              showTooltip={false}
+              displayOverlayContent={false}
             />
 
+            <p className="mt-4 text-sm font-medium font-sora tracking-wide text-neutral-200">
+              {tech.name}
+            </p>
+          </div>
         ))}
       </div>
     </section>
