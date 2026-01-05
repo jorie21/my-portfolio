@@ -13,9 +13,9 @@ import JorDev from "@/public/logo/JorDevLogo.png";
 
 export default function About() {
   return (
-    <section className="screen min-h-screen p-20 flex flex-col items-center gap-8">
+    <section className="screen min-h-screen p-20 flex flex-col items-center gap-16">
       <H2>About Me</H2>
-      <div className="flex w-full p-4 gap-4">
+      <div className="flex w-full p-4 gap-8">
         {/*left */}
         <div className="w-full space-y-4 ">
           <PixelTransition
@@ -34,7 +34,7 @@ export default function About() {
               </div>
             }
             gridSize={15}
-            pixelColor="#000000"
+            pixelColor="#f1f1f1"
             once={false}
             animationStepDuration={0.6}
             className="custom-pixel-card place-self-center"
@@ -45,55 +45,64 @@ export default function About() {
             <InfoCard
               icon={<GraduationCap className="w-5 h-5" />}
               label="Education"
-              value="Ontario Tech University"
+              value="Colegio De Montalban"
             />
             <InfoCard
-              icon={<MapPin className="w-5 h-5 text-cyan-400" />}
+              icon={<MapPin className="w-5 h-5 " />}
               label="Location"
               value="Montalban, Rizal"
             />
             <InfoCard
-              icon={<Mail className="w-5 h-5 text-cyan-400" />}
+              icon={<Mail className="w-5 h-5 " />}
               label="Email"
-              value="jorie@email.com"
+              value="visayajorie@email.com"
             />
           </div>
         </div>
 
         {/* right*/}
-        <div className="w-full space-y-4 text-center md:text- ">
+        <div className="w-full space-y-8 ">
           <Tabs defaultValue="story" className="w-full">
             {/* TAB BUTTONS */}
             <TabsList className="flex gap-2 bg-transparent justify-center md:justify-start">
-              <TabsTrigger value="story" className="flex gap-2 p-4">
+              <TabsTrigger value="story" className="flex gap-2 p-4 ">
                 <User className="w-4 h-4" />
                 My Story
               </TabsTrigger>
 
-              <TabsTrigger value="interests" className="flex gap-2">
+              <TabsTrigger value="interests" className="flex gap-2 p-4 data-[state=active]:bg-black/80
+               data-[state=active]:text-white">
                 <Heart className="w-4 h-4" />
                 Interests
               </TabsTrigger>
 
-              <TabsTrigger value="facts" className="flex gap-2">
+              <TabsTrigger value="facts" className="flex gap-2 p-4">
                 <Star className="w-4 h-4" />
                 Fun Facts
               </TabsTrigger>
             </TabsList>
-
+            <div className="outline outline-black/50 w-full mt-2"></div>
             {/* TAB CONTENT */}
-            <TabsContent value="story">
+            <TabsContent value="story" className="mt-5">
               <P>
-                I'm Jorie Visaya, a 21-year-old 4th-year college student
-                passionate <br />
-                about web development using Next.js.
-                <br />I love solving business problems through code and
-                experimenting <br />
-                with creative solutions as a vibe coder.
+                I&apos;m Jorie Visaya, a 21-year-old 4th-year college student
+                who is deeply passionate about web development, particularly
+                building modern and scalable applications using Next.js.
                 <br />
-                When I'm not coding, you'll find me at the gym doing
-                powerlifting <br />
-                or playing badminton.
+                <br />
+                I enjoy solving real-world business problems through clean,
+                efficient code and love experimenting with creative ideas and
+                unique user experiences as a vibe coder.
+                <br />
+                <br />
+                Beyond development, I strongly value continuous learning and
+                personal growth, always striving to improve my technical skills
+                and design thinking.
+                <br />
+                <br />
+                When I&apos;m not coding, you&apos;ll usually find me at the gym
+                doing powerlifting to stay disciplined and focused, or on the
+                court playing badminton to keep myself active and energized.
               </P>
             </TabsContent>
 
@@ -128,22 +137,47 @@ export default function About() {
             </TabsContent>
           </Tabs>
 
-          <Button>Contact me</Button>
+          <Button className="bg-black/80">Contact me</Button>
         </div>
       </div>
     </section>
   );
 }
 
-/* ---------- Small Helper Components ---------- */
-
 function InfoCard({ icon, label, value }: any) {
   return (
-    <div className="flex items-center gap-3 p-3 bg-slate-800/30 backdrop-blur-sm rounded-lg border border-slate-700/50">
-      <div className="bg-slate-800/30 p-2 rounded-lg">{icon}</div>
-      <div>
-        <P className="text-xs text-slate-400">{label}</P>
-        <P className="text-sm font-medium">{value}</P>
+    <div
+      className="
+        group
+        flex items-center gap-4
+        rounded-xl
+        bg-[#f1f1f1]
+        border border-black/10
+        px-4 py-3
+        font-sora
+        transition-all duration-300
+        hover:border-black/50
+      "
+    >
+      {/* Icon */}
+      <div
+        className="
+          grid place-items-center
+          rounded-lg
+          bg-black/5
+          p-2
+          text-black/80
+          transition-transform duration-300
+          group-hover:scale-110
+        "
+      >
+        {icon}
+      </div>
+
+      {/* Text */}
+      <div className="leading-tight text-black/80">
+        <P className="text-xs font-sora text-black/60">{label}</P>
+        <P className="text-sm font-medium font-sora text-black/80">{value}</P>
       </div>
     </div>
   );

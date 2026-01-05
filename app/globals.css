@@ -150,14 +150,14 @@
     @apply bg-background text-foreground;
   }
   .screen {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 outline outline-blue-500 lg:px-8 py-8;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
   }
   .top-screen {
     @apply max-w-7xl 
       mx-auto 
       px-4 sm:px-6 lg:px-8
       py-3
-      outline outline-blue-500
+
   }
 }
 @layer utilities {

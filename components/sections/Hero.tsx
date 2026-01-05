@@ -24,16 +24,16 @@ export default function Hero() {
 
       {/* Your Content */}
       <div className="relative z-10 screen w-full flex flex-col justify-center items-center gap-2">
-        <div className="outline outline-red-500">
+        <div >
           {/* Title */}
           <H1>Hi, I&apos;m Jorie Bascones Visaya</H1>
         </div>
         {/* subTitle */}
-        <div className="outline outline-red-500">
+        <div >
           <H3>Aspiring Soft Engineer</H3>
         </div>
         {/* paragraph */}
-        <div className="max-w-xl mx-auto text-center outline outline-red-500 space-y-3">
+        <div className="max-w-xl mx-auto text-center space-y-3">
           <P className="text-baseleading-relaxed text-xs">
             4th Year IT Student,
             Passionate about web development and building elegant, user-centered
@@ -43,14 +43,14 @@ export default function Hero() {
           </P>
         </div>
         {/* buttons */}
-        <div className="flex outline outline-red-500">
+        <div className="flex mt-10">
           <HoverBorderGradient variant="dark">
             View Projects
           </HoverBorderGradient>
           <HoverBorderGradient>About Me</HoverBorderGradient>
         </div>
          {/* logos */}
-        <div className="flex space-x-2 outline outline-red-500">
+        <div className="flex space-x-2 mt-5">
           <Github />
           <Facebook />
           <Mail />
