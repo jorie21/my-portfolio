@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import { User, Heart, Star, GraduationCap, MapPin, Mail } from "lucide-react";
-
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { H2, H4 } from "../ui/heading";
+import { H2 } from "../ui/heading";
 import { P } from "../ui/typography";
 import { Button } from "../ui/button";
 import profileKo from "@/public/logo/profileko.jpg";
@@ -14,11 +13,11 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section className="screen min-h-screen p-20 flex flex-col items-center gap-16">
+    <section className="screen min-h-screen px-4 sm:px-6 md:px-16 py-16 flex flex-col items-center gap-16">
       <H2>About Me</H2>
-      <div className="flex w-full p-4 gap-8">
-        {/*left */}
-        <div className="w-full space-y-4 ">
+      <div className="flex flex-col md:flex-row w-full gap-8">
+        {/* Left */}
+        <div className="w-full md:w-1/2 space-y-4">
           <PixelTransition
             firstContent={
               <Image
@@ -49,27 +48,26 @@ export default function About() {
               value="Colegio De Montalban"
             />
             <InfoCard
-              icon={<MapPin className="w-5 h-5 " />}
+              icon={<MapPin className="w-5 h-5" />}
               label="Location"
               value="Montalban, Rizal"
             />
             <InfoCard
-              icon={<Mail className="w-5 h-5 " />}
+              icon={<Mail className="w-5 h-5" />}
               label="Email"
               value="visayajorie@email.com"
             />
           </div>
         </div>
 
-        {/* right*/}
-        <div className="w-full space-y-8 ">
+        {/* Right */}
+        <div className="w-full md:w-1/2 space-y-8">
           <Tabs defaultValue="story" className="w-full">
             {/* TAB BUTTONS */}
-            <TabsList className="flex gap-2 bg-transparent justify-center md:justify-start ">
+            <TabsList className="flex flex-wrap gap-2 bg-transparent justify-center md:justify-start">
               <TabsTrigger
                 value="story"
-                className="flex gap-2 p-4 data-[state=active]:bg-black/80
-               data-[state=active]:text-white "
+                className="flex gap-2 p-3 sm:p-4 data-[state=active]:bg-black/80 data-[state=active]:text-white"
               >
                 <User className="w-4 h-4" />
                 My Story
@@ -77,8 +75,7 @@ export default function About() {
 
               <TabsTrigger
                 value="interests"
-                className="flex gap-2 p-4 data-[state=active]:bg-black/80
-               data-[state=active]:text-white"
+                className="flex gap-2 p-3 sm:p-4 data-[state=active]:bg-black/80 data-[state=active]:text-white"
               >
                 <Heart className="w-4 h-4" />
                 Interests
@@ -86,17 +83,17 @@ export default function About() {
 
               <TabsTrigger
                 value="facts"
-                className="flex gap-2 p-4 data-[state=active]:bg-black/80
-               data-[state=active]:text-white"
+                className="flex gap-2 p-3 sm:p-4 data-[state=active]:bg-black/80 data-[state=active]:text-white"
               >
                 <Star className="w-4 h-4" />
                 Fun Facts
               </TabsTrigger>
             </TabsList>
             <div className="outline outline-black/50 w-full mt-2"></div>
+
             {/* TAB CONTENT */}
             <TabsContent value="story" className="mt-5">
-              <P>
+              <P className="text-sm sm:text-base leading-relaxed">
                 I&apos;m Jorie Visaya, a 21-year-old 4th-year college student
                 who is deeply passionate about web development, particularly
                 building modern and scalable applications using Next.js.
@@ -155,18 +152,23 @@ export default function About() {
                 />
                 <InfoGridCard
                   title="4th Year Student"
-                  description="Currently completing a Information Technology degree."
+                  description="Currently completing an Information Technology degree."
                 />
               </div>
             </TabsContent>
           </Tabs>
 
-          <Button className="bg-black/80">Contact me</Button>
+          <Button className="bg-black/80 w-full sm:w-auto text-center py-2 sm:py-3 px-4 sm:px-6">
+            Contact me
+          </Button>
         </div>
       </div>
     </section>
   );
 }
+
+// InfoCard and InfoGridCard remain the same
+
 
 function InfoCard({ icon, label, value }: any) {
   return (
