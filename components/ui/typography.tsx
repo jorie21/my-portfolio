@@ -11,7 +11,7 @@ export function P({ children, className }: TextProps) {
   return (
     <p
       className={clsx(
-        "font-sora text-base leading-relaxed text-soft-black",
+        "font-sora text-base leading-relaxed ",
         className
       )}
     >

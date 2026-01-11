@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import profileKo from "@/public/logo/profileko.jpg";
 import PixelTransition from "../PixelTransition";
 import JorDev from "@/public/logo/JorDevLogo.png";
+import { motion } from "framer-motion";
 
 export default function About() {
   return (
@@ -64,19 +65,30 @@ export default function About() {
         <div className="w-full space-y-8 ">
           <Tabs defaultValue="story" className="w-full">
             {/* TAB BUTTONS */}
-            <TabsList className="flex gap-2 bg-transparent justify-center md:justify-start">
-              <TabsTrigger value="story" className="flex gap-2 p-4 ">
+            <TabsList className="flex gap-2 bg-transparent justify-center md:justify-start ">
+              <TabsTrigger
+                value="story"
+                className="flex gap-2 p-4 data-[state=active]:bg-black/80
+               data-[state=active]:text-white "
+              >
                 <User className="w-4 h-4" />
                 My Story
               </TabsTrigger>
 
-              <TabsTrigger value="interests" className="flex gap-2 p-4 data-[state=active]:bg-black/80
-               data-[state=active]:text-white">
+              <TabsTrigger
+                value="interests"
+                className="flex gap-2 p-4 data-[state=active]:bg-black/80
+               data-[state=active]:text-white"
+              >
                 <Heart className="w-4 h-4" />
                 Interests
               </TabsTrigger>
 
-              <TabsTrigger value="facts" className="flex gap-2 p-4">
+              <TabsTrigger
+                value="facts"
+                className="flex gap-2 p-4 data-[state=active]:bg-black/80
+               data-[state=active]:text-white"
+              >
                 <Star className="w-4 h-4" />
                 Fun Facts
               </TabsTrigger>
@@ -106,34 +118,46 @@ export default function About() {
               </P>
             </TabsContent>
 
-            <TabsContent value="interests">
-              <ListItem emoji="💻" title="Web Development">
-                Building modern web apps with Next.js, React, and TypeScript
-              </ListItem>
-              <ListItem emoji="🏋️" title="Powerlifting">
-                Staying strong and disciplined through training
-              </ListItem>
-              <ListItem emoji="🏸" title="Badminton">
-                Playing competitively and staying active
-              </ListItem>
-              <ListItem emoji="🚀" title="Hackathons">
-                Building innovative projects under pressure
-              </ListItem>
+            <TabsContent value="interests" className="mt-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <InfoGridCard
+                  title="Web Development"
+                  description="Building modern web applications using Next.js, React, and TypeScript."
+                />
+                <InfoGridCard
+                  title="Powerlifting"
+                  description="Staying disciplined and consistent through strength training."
+                />
+                <InfoGridCard
+                  title="Badminton"
+                  description="Playing competitively to stay active and focused."
+                />
+                <InfoGridCard
+                  title="Tech Explorer"
+                  description="Experimenting with new tools and building creative solutions across the tech landscape."
+                />
+              </div>
             </TabsContent>
 
-            <TabsContent value="facts">
-              <ListItem emoji="🎯" title="Goal-Oriented">
-                Working toward becoming a software engineer
-              </ListItem>
-              <ListItem emoji="🌱" title="Continuous Learner">
-                Always improving my skillset
-              </ListItem>
-              <ListItem emoji="🎨" title="Vibe Coder">
-                Loves creative coding solutions
-              </ListItem>
-              <ListItem emoji="🎓" title="4th Year Student">
-                Final year of Computer Science
-              </ListItem>
+            <TabsContent value="facts" className="mt-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <InfoGridCard
+                  title="Goal-Oriented"
+                  description="Focused on becoming a professional software engineer."
+                />
+                <InfoGridCard
+                  title="Continuous Learner"
+                  description="Always improving technical and problem-solving skills."
+                />
+                <InfoGridCard
+                  title="Vibe Coder"
+                  description="Enjoys crafting creative and intuitive user experiences."
+                />
+                <InfoGridCard
+                  title="4th Year Student"
+                  description="Currently completing a Information Technology degree."
+                />
+              </div>
             </TabsContent>
           </Tabs>
 
@@ -183,14 +207,31 @@ function InfoCard({ icon, label, value }: any) {
   );
 }
 
-function ListItem({ emoji, title, children }: any) {
+function InfoGridCard({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
   return (
-    <div className="flex items-start gap-3 mb-3 text-left">
-      <span className="text-2xl">{emoji}</span>
-      <div>
-        <h3 className="font-semibold">{title}</h3>
-        <p className="text-sm opacity-80">{children}</p>
-      </div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      whileHover={{ y: -4 }}
+      className="
+        rounded-2xl
+        border border-black/10
+        bg-[#f1f1f1]
+        p-5
+        transition-all
+        hover:border-black/40
+        hover:shadow-md
+      "
+    >
+      <h3 className="font-semibold text-base mb-1">{title}</h3>
+      <p className="text-sm text-black/70 leading-relaxed">{description}</p>
+    </motion.div>
   );
 }

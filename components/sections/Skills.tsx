@@ -1,7 +1,10 @@
+"use client";
+
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { H2 } from "../ui/heading";
 import { P } from "../ui/typography";
-import TiltedCard from "../TiltedCard";
 import { techStack } from "@/constant/tech-stack";
+import Image from "next/image";
 
 export default function Skills() {
   return (
@@ -13,38 +16,81 @@ export default function Skills() {
       </div>
 
       {/* TECH GRID */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-6xl">
+      <div
+        className="
+          grid
+          w-full
+          max-w-6xl
+          gap-6 md:gap-8
+          grid-cols-2 md:grid-cols-4
+        "
+      >
         {techStack.map((tech) => (
-          <div
-            key={tech.name}
-            className="group flex flex-col items-center justify-center rounded-2xl
-              bg-[#f1f1f1] backdrop-blur
-              border border-neutral-200
-              h-[180px] w-[180px]
-              transition-all duration-300
-              hover:border-black/50 hover:-translate-y-2
-              hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
-          >
-            <TiltedCard
-              imageSrc={tech.icon}
-              altText={tech.name}
-              containerHeight="100px"
-              containerWidth="100px"
-              imageHeight="50px"
-              imageWidth="50px"
-              rotateAmplitude={8}
-              scaleOnHover={1.1}
-              showMobileWarning={false}
-              showTooltip={false}
-              displayOverlayContent={false}
+          <MagneticCard key={tech.name}>
+            {/* ICON */}
+            <Image
+              src={tech.icon}
+              alt={tech.name}
+              width={70}
+              height={70}
             />
 
+            {/* LABEL */}
             <p className="mt-4 text-sm font-medium font-sora tracking-wide text-neutral-700">
               {tech.name}
             </p>
-          </div>
+          </MagneticCard>
         ))}
       </div>
     </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Magnetic Card Component */
+/* ------------------------------------------------------------------ */
+
+function MagneticCard({ children }: any) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const springX = useSpring(x, { stiffness: 180, damping: 20 });
+  const springY = useSpring(y, { stiffness: 180, damping: 20 });
+
+  function handleMouseMove(e: any) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left - rect.width / 2;
+    const offsetY = e.clientY - rect.top - rect.height / 2;
+
+    x.set(offsetX * 0.18);
+    y.set(offsetY * 0.18);
+  }
+
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ x: springX, y: springY }}
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 260, damping: 18 }}
+      className="
+        aspect-square
+        w-full
+        flex flex-col items-center justify-center
+        rounded-2xl
+        bg-[#f1f1f1]
+        border border-black/10
+        cursor-default
+        hover:border-black/40
+        hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)]
+      "
+    >
+      {children}
+    </motion.div>
   );
 }

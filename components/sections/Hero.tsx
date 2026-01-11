@@ -12,14 +12,14 @@ export default function Hero() {
     <section className="relative min-h-screen w-full flex justify-center">
       {/* Galaxy Background */}
       <div className="absolute inset-0 w-full h-full">
-        {/* <Galaxy 
+        <Galaxy 
           glowIntensity={0.1}     
           density={0.5}            
           saturation={0.5}         
           hueShift={200}           
           twinkleIntensity={0.2}   
           transparent={true}
-        /> */}
+        />
       </div>
 
       {/* Your Content */}
