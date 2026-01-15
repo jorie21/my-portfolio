@@ -8,7 +8,8 @@ import { Button } from "../ui/button";
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
+import { Pagination, Navigation } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -18,7 +19,7 @@ export default function Projects() {
     <section className="screen min-h-screen flex flex-col gap-8 items-center p-20 px-4 md:px-16">
       <H2>Featured Projects</H2>
 
-      {/* Mobile/Tablet Swiper */}
+      {/* Mobile / Tablet Swiper */}
       <div className="w-full mt-10 md:hidden">
         <Swiper
           modules={[Pagination, Navigation]}
