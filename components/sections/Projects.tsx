@@ -5,44 +5,45 @@ import { H2 } from "../ui/heading";
 import { ProjectCard } from "@/src/components/uitripled/project-card-shadcnui";
 import { projects } from "@/constant/projects";
 import { Button } from "../ui/button";
-import { motion } from "framer-motion";
+
+// Swiper imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 export default function Projects() {
   return (
     <section className="screen min-h-screen flex flex-col gap-8 items-center p-20 px-4 md:px-16">
       <H2>Featured Projects</H2>
 
-      {/* Mobile/Tablet slider */}
-      <div className="w-full overflow-x-hidden md:overflow-x-visible">
-        <motion.div
-          className="flex gap-8 mt-10"
-          animate={{ x: ["0%", "-100%"] }}
-          transition={{
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: projects.length * 3, // adjust speed here
-            ease: "linear",
-          }}
+      {/* Mobile/Tablet Swiper */}
+      <div className="w-full mt-10 md:hidden">
+        <Swiper
+          modules={[Pagination, Navigation]}
+          spaceBetween={16}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          navigation
         >
           {projects.map((project, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 w-72 md:w-auto"
-            >
-              <ProjectCard {...project} />
-            </div>
+            <SwiperSlide key={index}>
+              <div className="w-full flex justify-center">
+                <ProjectCard {...project} />
+              </div>
+            </SwiperSlide>
           ))}
+        </Swiper>
+      </div>
 
-          {/* Duplicate for seamless loop */}
-          {projects.map((project, index) => (
-            <div
-              key={`duplicate-${index}`}
-              className="flex-shrink-0 w-72 md:w-auto"
-            >
-              <ProjectCard {...project} />
-            </div>
-          ))}
-        </motion.div>
+      {/* Desktop layout */}
+      <div className="hidden md:flex flex-wrap gap-8 mt-10 justify-center w-full">
+        {projects.map((project, index) => (
+          <div key={index} className="w-72">
+            <ProjectCard {...project} />
+          </div>
+        ))}
       </div>
 
       <div>
